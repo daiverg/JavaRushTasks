@@ -26,7 +26,7 @@ public class Solution {
         map.put(8, "восемь");
         map.put(9, "девять");
         map.put(10, "десять");
-        map.put(11, "одинадцать");
+        map.put(11, "одиннадцать");
         map.put(12, "двенадцать");
     }
 
@@ -34,11 +34,27 @@ public class Solution {
     public static void main(String[] args) throws IOException {
 
         BufferedReader cR = new BufferedReader(new InputStreamReader(System.in));
-        String fileName = /*cR.readLine()*/ "1.txt";
+        String fileName = cR.readLine();
         cR.close();
 
         BufferedReader fileReader = new BufferedReader(new FileReader(fileName));
 
+        while (fileReader.ready()) {
+            String line = fileReader.readLine();
+            String[] mas = line.split(" ");
+
+            for (int i = 0; i < mas.length; i++) {
+                for (Map.Entry<Integer, String> pair : map.entrySet()) {
+                    if (mas[i].equals(pair.getKey().toString())) {
+                        mas[i] = pair.getValue();
+                    }
+                }
+            }
+            for (int i = 0; i < mas.length; i++) {
+                System.out.print(mas[i]+" ");
+            }
+            System.out.println();
+        }
 
         fileReader.close();
 
